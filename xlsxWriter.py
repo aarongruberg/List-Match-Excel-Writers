@@ -50,10 +50,13 @@ df = pd.read_csv(f, skiprows=None, usecols=cols)
 # Create 'reachable' dataframe for 'MEI' >= 25 and 'active' == True
 #reachable_df = df[(df['MEI'] >= 20) & (df['active'] == True) & (df['duplicate'] == False) & (df['Industry'] != 'Education') & (df['Industry'] != 'Government')]
 reachable_df = df[(df['MEI'] >= 20) & (df['active'] == True)]
+reachable_df = reachable_df.sort_values(by=['MEI'], ascending=False)
+
 
 # Create 'Not_Reachable' dataframe for 'MEI' < 25 and 'active' == True
 #not_reachable_df = df[(df['MEI'] < 20) & (df['active'] == True) & (df['duplicate'] == False) & (df['Industry'] != 'Education') & (df['Industry'] != 'Government')]
 not_reachable_df = df[(df['MEI'] < 20) & (df['active'] == True)]
+not_reachable_df = not_reachable_df.sort_values(by=['MEI'], ascending=False)
 
 # Create 'No_Match' dataframe for rows that require manual scrubbing
 # These rows also have 'active' == False and do not contain any duplicates
